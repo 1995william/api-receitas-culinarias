@@ -5,8 +5,9 @@ import lombok.Data;
 
 import javax.validation.constraints.NotNull;
 import java.util.List;
+
 @Data
-public class RecipeCreateRequest {
+public class RecipeUpdateRequest {
     @NotNull(message = "name must be defined")
     private String name;
     @NotNull(message = "section must be defined")
