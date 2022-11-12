@@ -4,12 +4,17 @@ import br.com.receitasculinarias.domain.dto.RecipeCreateRequest;
 import br.com.receitasculinarias.domain.dto.RecipeResponse;
 import br.com.receitasculinarias.domain.dto.RecipeUpdateRequest;
 import br.com.receitasculinarias.service.RecipeService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
+import springfox.documentation.annotations.ApiIgnore;
 
 import javax.validation.Valid;
 import java.net.URI;
@@ -23,8 +28,13 @@ public class RecipeController {
     private final RecipeService service;
     private final static String Id = "/id/{id}";
     private final static String Name = "/name/{name}";
+   @ApiImplicitParams({
+           @ApiImplicitParam(name = "page", dataType = "integer", paramType = "query"),
+           @ApiImplicitParam(name = "size", dataType = "integer", paramType = "query"),
+           @ApiImplicitParam(name = "sort", allowMultiple = true, dataType = "string", paramType = "query")
+   })
     @GetMapping
-    public ResponseEntity<List<RecipeResponse>> listAll (@PageableDefault Pageable pageable) {
+    public ResponseEntity<List<RecipeResponse>> listAll (@PageableDefault @ApiIgnore Pageable pageable) {
         List<RecipeResponse> recipes = service.listAll(pageable);
         return ResponseEntity.ok(recipes);
     }
