@@ -44,7 +44,7 @@ public class RecipeController {
     @PostMapping
     public ResponseEntity<RecipeResponse> create (@RequestBody @Valid RecipeCreateRequest createRequest, UriComponentsBuilder uriBuilder) {
         RecipeResponse newRecipe = service.create(createRequest);
-        URI uri = uriBuilder.path("/receitas/{id}").buildAndExpand(newRecipe.getId()).toUri();
+        URI uri = uriBuilder.path("/api/recipes/id/{id}").buildAndExpand(newRecipe.getId()).toUri();
 
         return ResponseEntity.created(uri).body(newRecipe);
     }
