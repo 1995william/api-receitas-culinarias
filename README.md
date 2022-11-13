@@ -57,4 +57,4 @@ Aplicação possui testes unitários Junit5 e Mockito com foco em testar service
 
 ## Documentação Swagger
 
-Para acessar o swagger clique [aqui](http://localhost:8080/swagger-ui/index.html>).
+Para acessar o swagger clique [aqui](http://localhost:8080/swagger-ui/index.html).
